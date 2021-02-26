@@ -15,7 +15,7 @@ app.use(morgan('dev'));
 app.use(cors());
 // Routing
 app.get('/', (req, res) => {
- res.send('Node.js Server is live!');
-});
+    res.send('Node.js Server is live!');
+    });
 app.use('/api', apiRouter);
 export default app;

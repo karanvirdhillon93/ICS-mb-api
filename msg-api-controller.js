@@ -1,3 +1,4 @@
+import messageSchema from '/home/student/ics221-mb-api/models/message-schema.js';
 var messages=([
     {id:0, name:"Bill",msgText:"Hi All!"},
     {id:1, name:"Ann",msgText:"ICS 211 is fun!"},
