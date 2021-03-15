@@ -2,14 +2,13 @@ import messages from '/home/student/ics221-mb-api/msg-api-controller.js'
 import messageSchema from '/home/student/ics221-mb-api/models/message-schema.js'
 // GET Request Handler
 const getAllMessages = (req, res) => {
-   res.status(200).send('Successful API GET Request');
+  // res.status(200).send('Successful API GET Request');
     try {
         res.status(200).json(messages);
     } catch (err) {
         res.status(400).send('Bad Request');
     }
-
-   res.status(200).json(messages);
+  // res.status(200).json(messages);
    };
    // POST Request Handler
    const addNewMessage = async (req, res) => {
@@ -22,7 +21,7 @@ const getAllMessages = (req, res) => {
         message.id = messages.length;
         messages.unshift(message);
         console.log(messages);
-        res.status(201).send('Created');
+        res.status(201).json(message);
        /* message.id = messages.length;
         messages.unshift(message);
         console.log(messages);

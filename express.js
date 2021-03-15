@@ -1,3 +1,5 @@
+// mongodb connection via mongoose
+import './db.js';
 import express from 'express'
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
