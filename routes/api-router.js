@@ -10,4 +10,7 @@ router.route('/messages')
  msgAPIController.addNewMessage);
 router.route('/users')
 .post(userAPIController.registerNewUser)
+router.route('/login')
+.post(userAPIController.logInUser);
 export default router;
+
