@@ -1,4 +1,5 @@
 // mongodb connection via mongoose
+import 'dotenv/config.js';
 import './db.js';
 import express from 'express'
 import bodyParser from 'body-parser';
