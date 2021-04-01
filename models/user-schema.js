@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import argon2 from 'argon2';
 
 
 //the Schema should have three paths (JS Objects) and named exactly as: email, username, and
@@ -32,6 +33,29 @@ const userSchema = new mongoose.Schema({
     transform: (doc, ret) => { delete ret._id; }
    });   
 
+   userSchema.pre('save', async function() {
+        // hash and salt password
+    try {
+        const hash = await argon2.hash(this.password, {
+            type: argon2.argon2id
+        });
+    this.password = hash;
+    } catch (err) {
+        console.log('Error in hashing password' + err);
+    }
+   });
+   
+
+userSchema.methods.verifyPassword = async function(plainTextPassword) {
+ const dbHashedPassword = this.password;
+    try {
+        return await argon2.verify(dbHashedPassword,
+        plainTextPassword);
+    } catch (err) {
+        console.log('Error verifying password' + err);
+    }
+ }
+   
 export default mongoose.model('user', userSchema);
 
 
