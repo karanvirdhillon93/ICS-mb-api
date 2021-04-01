@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import passport from 'passport';
-import { BasicStrategy } from 'passport-http';
+import LocalStrategy from 'passport-local';
 const userModel = mongoose.model('user');
 // Login Handler
 const logInUser = (req, res) => {
@@ -36,7 +36,7 @@ const alreadyExists = async ( email, username ) => (
 );
 
 
-passport.use(new BasicStrategy(
+passport.use(new LocalStrategy(
     (username, password, done) => {
     userModel
     .findOne({

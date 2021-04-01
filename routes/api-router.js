@@ -11,6 +11,7 @@ router.route('/messages')
 router.route('/users')
 .post(userAPIController.registerNewUser)
 router.route('/login')
-.post(userAPIController.logInUser);
+.post(passport.authenticate('local', {session: false}),
+ userAPIController.logInUser);
 export default router;
 
