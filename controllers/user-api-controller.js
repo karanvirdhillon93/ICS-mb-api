@@ -2,7 +2,29 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import jwt from 'jsonwebtoken';
+import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+let jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+jwtOptions.secretOrKey = process.env.JWT_SECRET;
 const userModel = mongoose.model('user');
+// Configure JWT Token Auth
+passport.use(new JwtStrategy(
+    jwtOptions, (jwt_payload, done) => {
+    userModel
+    .findById(jwt_payload.sub)
+    .exec( (error, user) => {
+    // error in searching
+    if (error) return done(error);
+    if (!user) {
+    // user not found
+    return done(null, false);
+    } else {
+    // user found
+    return done(null, user);
+    }
+    })
+    }
+   ));
 // Login Handler
 const logInUser = (req, res) => {
     //res.status(200).send('Successful API Login Request');

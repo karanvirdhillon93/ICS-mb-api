@@ -6,7 +6,7 @@ const router = express.Router();
 router.route('/messages')
 .get(msgAPIController.getAllMessages)
 //.post(msgAPIController.addNewMessage);
-.post(passport.authenticate('basic', { session: false }),
+.post(passport.authenticate('jwt', { session: false }),
  msgAPIController.addNewMessage);
 router.route('/users')
 .post(userAPIController.registerNewUser)
