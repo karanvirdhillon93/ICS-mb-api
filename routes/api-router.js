@@ -17,5 +17,8 @@ router.route('/login')
 router.route('/messages/:messageId')
 .patch(passport.authenticate('jwt', {session: false}),
 msgAPIController.updateMessage);
+router.route('/messages/:messageId')
+.delete(passport.authenticate('jwt', {session: false}),
+msgAPIController.deleteMessage);
 export default router;
 
