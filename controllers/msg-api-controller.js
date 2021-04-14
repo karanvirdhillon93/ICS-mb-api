@@ -41,5 +41,10 @@ console.log(messageSchema);
         Request is either missing or malformed.');
        }
    };
-   export default { getAllMessages, addNewMessage };
+
+   const updateMessage = async (req, res) => {
+    res.status(200).send('Successful API Update Message PATCH Request');
+   }
+
+   export default { getAllMessages, addNewMessage, updateMessage };
    
