@@ -73,7 +73,34 @@ console.log(messageSchema);
    }
 
    const deleteMessage = async (req, res) => {
-    res.status(200).send('Successful API Update Message PATCH Request');
+    try {
+        let message = await messageModel.findById(req.params.messageId).exec();
+        if (!message) {
+        // there wasn't an error, but the message wasn't found
+        // (message is null)
+        // i.e. the id given doesn't match any in the database
+        res.sendStatus(404);
+        } else {
+        // message found - is the user authorized?
+        if ( message.name === req.user.username ) {
+        // auth user is owner of message, proceed w/ update
+        message.msgText = req.body.msgText;
+        try {
+        await message.remove();
+        // send back 204 No Content
+        res.sendStatus(204);
+        } catch (err) {
+        res.status(400).send('Failed to update. Invalid message text.');
+        }
+        } else {
+        // auth user is not owner, unauthorized
+        res.sendStatus(401);
+        }
+        }
+       } catch (err) {
+        res.sendStatus(400);
+       }
+       
    }
 
    export default { getAllMessages, addNewMessage, updateMessage, deleteMessage };
