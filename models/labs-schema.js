@@ -19,5 +19,5 @@ labsSchema.set('toJSON', {
     virtuals: true,
     transform: (doc, ret) => { delete ret._id; }
    });   
-   export default mongoose.model('labs', labsSchema);
-   //export default messageSchema;
+
+export default mongoose.model('labs', labsSchema);
