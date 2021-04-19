@@ -23,5 +23,8 @@ router.route('/messages/:messageId')
 msgAPIController.deleteMessage);
 router.route('/labs')
 .get(labsAPIController.getAllLabs)
+router.route('/labs')
+.post(passport.authenticate('jwt', { session: false }),
+labsAPIController.addNewLab);
 export default router;
 
