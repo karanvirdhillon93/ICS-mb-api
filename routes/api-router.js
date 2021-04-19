@@ -26,5 +26,8 @@ router.route('/labs')
 router.route('/labs')
 .post(passport.authenticate('jwt', { session: false }),
 labsAPIController.addNewLab);
+router.route('/labs/:labsId')
+.delete(passport.authenticate('jwt', {session: false}),
+labsAPIController.deleteMessage);
 export default router;
 

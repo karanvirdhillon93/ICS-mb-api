@@ -33,12 +33,45 @@ const getAllLabs = async (req, res) => {
            } catch (err) {
             res
             .status(400)
-            .send('Bad Request. The message in the body of the \
+            .send('Bad Request. The lab in the body of the \
             Request is either missing or malformed.');
            }
        };
 
 
+       const deleteMessage = async (req, res) => {
+       
+        try {
+            //console.log(req.params);
+           // console.log(req.params);
+           let lab = await labModel.findById(req.params.labId).exec();
+            console.log(lab);
+            if (!lab) {
+            // there wasn't an error, but the message wasn't found
+            // (lab is null)
+            // i.e. the id given doesn't match any in the database
+            res.sendStatus(404);
+            } else {
+            // lab found - is the user authorized?
+            if ( lab.name === req.user.username ) {
+            // auth user is owner of lab, proceed w/ update
+            lab.topic = req.body.topic;
+            try {
+            await lab.remove();
+            // send back 204 No Content
+            res.sendStatus(204);
+            } catch (err) {
+            res.status(400).send('Failed to update. Invalid lab text.');
+            }
+            } else {
+            // auth user is not owner, unauthorized
+            res.sendStatus(401);
+            }
+            }
+           } catch (err) {
+            res.sendStatus(400);
+           }
+       }
  
 
-export default {getAllLabs, addNewLab };
+export default {getAllLabs, addNewLab, deleteMessage };
