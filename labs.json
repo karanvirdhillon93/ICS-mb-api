@@ -1,0 +1,8 @@
+[
+  { "labNo": 1, "topic": "ICS 211 Review: A Message Board SPA" },
+  { "labNo": 2, "topic": "Porting Your MB SPA to Next.js and Adding a Form" },
+  { "labNo": 3, "topic": "Designing a RESTful API for the Message Board App" },
+  { "labNo": 4.1, "topic": "Implementing a RESTful API Using Node.js and Express" },
+  { "labNo": 4.2, "topic": "Re-factoring Your Message Board App to Use Your API"},
+  { "labNo": 5, "topic": "Adding a Database to Your Web Service"}
+]
