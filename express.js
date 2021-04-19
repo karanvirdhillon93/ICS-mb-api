@@ -25,4 +25,5 @@ app.get('/', (req, res) => {
     res.send('Node.js Server is live!');
     });
 app.use('/api', apiRouter);
+app.use('/api/ics221', apiRouter);
 export default app;

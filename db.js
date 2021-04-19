@@ -25,3 +25,4 @@ let dbURI = 'mongodb://localhost:27017/msgs_db';
  
     import '/home/student/ics221-mb-api/models/message-schema.js';
     import '/home/student/ics221-mb-api/models/user-schema.js';
+    import '/home/student/ics221-mb-api/models/labs-schema.js';

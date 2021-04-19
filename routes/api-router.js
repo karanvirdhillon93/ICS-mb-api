@@ -1,6 +1,7 @@
 import express from 'express';
 import msgAPIController from '../controllers/msg-api-controller.js';
 import userAPIController from '../controllers/user-api-controller.js';
+import labsAPIController from '../controllers/labs-api-controller.js';
 import passport from 'passport';
 
 const router = express.Router();
@@ -20,5 +21,7 @@ msgAPIController.updateMessage);
 router.route('/messages/:messageId')
 .delete(passport.authenticate('jwt', {session: false}),
 msgAPIController.deleteMessage);
+router.route('/labs')
+.get(labsAPIController.getAllLabs)
 export default router;
 

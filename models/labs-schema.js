@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import argon2 from 'argon2';
 
 const labsSchema = new mongoose.Schema({
     labNo: {
@@ -18,6 +19,13 @@ labsSchema.set('toJSON', {
     versionKey: false,
     virtuals: true,
     transform: (doc, ret) => { delete ret._id; }
-   });   
+   }); 
+
 
 export default mongoose.model('labs', labsSchema);
+
+
+
+
+
+
