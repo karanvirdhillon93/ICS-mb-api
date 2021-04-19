@@ -14,22 +14,16 @@ const getAllLabs = async (req, res) => {
    const addNewLab = async (req, res) => {
     //Successful API POST Request
         try {
-           // let message = await messageSchema.validate(req.body);
-            // TODO: add message as first element of array and
-            // respond with 201 Created and the message in the body
+           // let lab = await lab.validate(req.body);
+            // TODO: add lab as first element of array and
+            // respond with 201 Created and the lab in the body
             // of the response.
-            // message.id = messages.length;
-            // messages.unshift(message);
-            // console.log(messages);
+            // lab.id = lab.length;
+            //lab.unshift(lab);
+            // console.log(lab);
             let lab = await labsModel.create(req.body);
             res.status(201).json(lab);
-    /* message.id = messages.length;
-    messages.unshift(message);
-    console.log(messages);
-    setMessages( [message, ...messages] );
-    console.log(messages);
-    console.log(messageSchema);
-    */
+
            } catch (err) {
             res
             .status(400)

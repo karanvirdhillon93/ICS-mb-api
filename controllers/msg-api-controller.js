@@ -103,9 +103,7 @@ console.log(messageSchema);
        
    }
 
-   const getAllLabs = async (req, res) => {
-    res.status(200).send('Successful API Update Message PATCH Request');
-   }
+
   
-   export default { getAllMessages, addNewMessage, updateMessage, deleteMessage, getAllLabs};
+   export default { getAllMessages, addNewMessage, updateMessage, deleteMessage};
    
